@@ -9,6 +9,6 @@ This apps intentions is to provide a dynamic 5 day forecast that would pull the 
 the temperature, humidity, wind speed, and description. This would allow users to interact with a weather dashboard that is simple and easy to understand. 
 
 ## Deployment
-
+https://jose-seg.github.io/SunnySide-Weather-Dashboard/
 ## Github Repo
 https://github.com/Jose-seg/SunnySide-Weather-Dashboard
