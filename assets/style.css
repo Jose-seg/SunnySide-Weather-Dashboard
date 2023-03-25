@@ -10,7 +10,7 @@ body {
     padding: 20px;
   }
   
-  form {
+  /* form {
     display: flex;
     justify-content: right;
     margin-bottom: 20px;
@@ -18,25 +18,19 @@ body {
   
   label {
     margin-right: 10px;
-  }
+  } */
   
-  input[type="text"] {
+  #search-bar {
     width: 200px;
+    /* margin-right: 10px; */
+    display: flex;
+    justify-content: right;
+    margin-bottom: 20px;
     margin-right: 10px;
   }
   
-  button[type="submit"] {
-    background-color: #fff;
-    color: #3F51B5;
-    border: 2px solid #3F51B5;
-    border-radius: 5px;
-    padding: 5px 10px;
+  #search-button:hover {
     cursor: pointer;
-  }
-
-  button[type="submit"]:hover{
-    background-color: #243283;
-    color: white;
   }
   
   main {
