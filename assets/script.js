@@ -54,6 +54,15 @@ function getLocation() {
             let iconElement = document.createElement('img');
             let descriptionElement = document.createElement('p');
             let dateTimeElement = document.createElement('p');
+
+            //Traverses through the data to retrieve necessary data
+            cityElement.textContent = city;
+            tempElement.textContent = `Temperature: ${temp}°C`;
+            humidtyElemnt.textContent = `Humidity: ${humidity}%`;
+            windElemnt.textContent = `Wind Speed: ${wind}m/s`;
+            iconElement.src = `https://openweathermap.org/img/w/${icon}.png`;
+            descriptionElement.textContent = `${description}`;
+            dateTimeElement.textContent = `${dateTime.toLocaleString()}`;
             })
         }
     })
