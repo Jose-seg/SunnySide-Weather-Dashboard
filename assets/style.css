@@ -1,66 +1,86 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-  }
-  
-  header {
-    background-color: #3F51B5;
-    color: #fff;
-    text-align: center;
-    padding: 20px;
-  }
-  
-  /* form {
-    display: flex;
-    justify-content: right;
-    margin-bottom: 20px;
-  }
-  
-  label {
-    margin-right: 10px;
-  } */
-  
-  #search-bar {
-    width: 200px;
-    /* margin-right: 10px; */
-    display: flex;
-    justify-content: right;
-    margin-bottom: 20px;
-    margin-right: 10px;
-  }
-  
-  #search-button:hover {
-    cursor: pointer;
-  }
-  
-  main {
-    padding: 20px;
-  }
-  
-  h1, h2 {
-    margin: 0;
-  }
-  
-  .weather-card {
-    display: flex;
-    flex-wrap: wrap;
-    background-color: #fff;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    padding: 20px;
-   
-  }  
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  background-color: #f4f4f4;
+  color: #333;
+  padding: 20px;
+}
 
-  #current-weather {
-    width: 40%;
-  }
+h1,
+h2 {
+  margin-bottom: 20px;
+}
 
-  #previous-results {
-    display: flex;
-    flex-wrap: wrap;
-    background-color: #fff;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    padding: 20px;
-    width: 40%;
-    flex-direction: column;
-    margin-right: 10px;
-  }
+form {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+input[type='text'] {
+  flex: 1;
+  padding: 8px;
+  font-size: 18px;
+  border: 1px solid #ccc;
+}
+
+button {
+  padding: 8px 18px;
+  font-size: 18px;
+  background-color: #1976d2;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #1565c0;
+}
+
+#current-weather,
+#forecast {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#current-weather {
+  margin-bottom: 30px;
+}
+
+.forecast-day {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.forecast-day:last-child {
+  margin-bottom: 0;
+}
+
+#search-history {
+  list-style-type: none;
+  margin-bottom: 30px;
+}
+
+#search-history li {
+  padding: 5px 10px;
+  background-color: #1976d2;
+  color: #fff;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+
+#search-history li:hover {
+  background-color: #1565c0;
+}
+  
+  

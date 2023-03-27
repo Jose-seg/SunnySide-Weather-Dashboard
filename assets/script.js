@@ -1,71 +1,58 @@
 
-let weatherTable = document.querySelector('previous-results');
+const API_KEY = '44dda8f699c5f405c52085f983a2038d';
+const BASE_URL = 'https://api.openweathermap.org/data/2.5/';
 
-let searchbar = document.querySelector
-('#search-bar');
+const searchForm = document.getElementById('search-form');
+const cityInput = document.getElementById('city-input');
+const currentWeatherDiv = document.getElementById('current-weather');
+const forecastDiv = document.getElementById('forecast');
+const searchHistoryList = document.getElementById('search-history');
 
-let tableBody = document.querySelector('table-body');
+searchForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const city = cityInput.value;
+    fetchWeather(city);
+});
 
-let searchButon = document.querySelector('#search-button');
-
-let cityName = document.querySelector('#search-bar').value;
-
-function getLocation() {
-    let cityName = searchbar.value;
-    let locationUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=44dda8f699c5f405c52085f983a2038d`;
-
-    fetch(locationUrl)
-    .then(function(response){
-        return response.json();
-    })
-    .then(function(locData){
-        console.log('locData', locData);
-
-        if (locData.length > 0){
-            let lat = locData[0].lat;
-            let lon = locData[0].lon;
-            let city = locData[0].name;
-
-            let weatherUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,alerts&units=metrics&appid==44dda8f699c5f405c52085f983a2038d`;
-
-            fetch(weatherUrl)
-            .then(function(response){
-                return response.json();
-            })
-            .then(function(weatherData){
-                console.log('weatherData', weatherData);
-
-            //This should display current weather data
-                let today = weatherData.today;
-                let temp = today.temp;
-                let humidity = today.humidity;
-                let wind = today.wind_speed;
-                let icon = today.weather[0].icon;
-                let description = today.weather[0].description;
-                let dateTime = new Date(today.dt * 1000);
-
-            //Here we create our elements so we can display the retrieved data
-            let tableRow = document.createElement('tr');
-            let tableData = document.createElement('td');
-            let cityElement = document.createElement('h4');
-            let tempElement = document.createElement('p');
-            let humidtyElemnt = document.createElement('p');
-            let windElemnt = document.createElement('p');
-            let iconElement = document.createElement('img');
-            let descriptionElement = document.createElement('p');
-            let dateTimeElement = document.createElement('p');
-
-            //Traverses through the data to retrieve necessary data
-            cityElement.textContent = city;
-            tempElement.textContent = `Temperature: ${temp}°C`;
-            humidtyElemnt.textContent = `Humidity: ${humidity}%`;
-            windElemnt.textContent = `Wind Speed: ${wind}m/s`;
-            iconElement.src = `https://openweathermap.org/img/w/${icon}.png`;
-            descriptionElement.textContent = `${description}`;
-            dateTimeElement.textContent = `${dateTime.toLocaleString()}`;
-            })
-        }
-    })
+function fetchWeather(city) {
+    // Fetch current weather
+    const currentWeatherUrl = `${BASE_URL}weather?q=${city}&appid=${API_KEY}&units=metric`;
+    fetch(currentWeatherUrl)
+        .then((response) => response.json())
+        .then((data) => {
+            console.log('current weather data', data);
+            displayCurrentWeather(data);
+        });
+    
+    // Fetch 5-day forecast
+    const forecastUrl = `${BASE_URL}forecast?q=${city}&appid=${API_KEY}&units=metric`;
+    fetch(forecastUrl)
+        .then((response) => response.json())
+    .then((data) => {
+        console.log('forecast data', data);
+        displayForecast(data);
+    });
 }
 
-searchButon.addEventListener('click', getLocation);
+// Display current weather details
+function displayCurrentWeather(data) {
+    const {name, main, wind, weather} = data;
+    const iconUrl = `http://openweathermap.org/img/wn/${weather[0].icon}.png`;
+
+    currentWeatherDiv.innerHTML = `
+    <h3>${name} (${new Date()})`
+}
+
+function displayForecast(data) {
+    // Display 5-day forecast
+}
+
+function addToSearchHistory(city) {
+    // Add city to search history and create click event
+}
+
+function loadSearchHistory() {
+    // Load search history from local storage
+}
+
+loadSearchHistory();
