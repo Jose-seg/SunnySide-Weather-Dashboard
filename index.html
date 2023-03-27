@@ -3,26 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--my link to my css stylesheet-->
     <link rel="stylesheet" href="./assets/style.css">
     <title>Weather Dashboard</title>
 </head>
 <body>
+  <!--title for website-->
     <h1>Weather Dashboard</h1>
-
+<!--The search form for the website-->
     <form id="search-form">
         <input type="text" id="city-input" placeholder="Search for a city">
         <button type="submit">Search</button>
     </form>
-
+<!--current weather section here our data for the current day will display-->
     <h2>Current Weather</h2>
     <div id="current-weather"></div>
-
+<!--future forecast will display here with the next four days of the city we searched-->
     <h2>future Forecast</h2>
     <div id="forecast"></div>
-
+<!--The search history section will contain the previous results-->
     <h2>Search History</h2>
     <ul id="search-history"></ul>
-    
+<!--JavaScript link-->  
     <script src="./assets/script.js"></script>
 </body>
 </html>

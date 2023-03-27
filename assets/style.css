@@ -16,20 +16,20 @@ h1,
 h2 {
   margin-bottom: 20px;
 }
-
+/* I fix the form for the center it gives the search bar simplicity*/
 form {
   display: flex;
   justify-content: center;
   margin-bottom: 30px;
 }
-
+/*We add padding and font size for the text input of the search bar*/
 input[type='text'] {
   flex: 1;
   padding: 8px;
   font-size: 18px;
   border: 1px solid #ccc;
 }
-
+/*added color to the seach button and added sizing elements */
 button {
   padding: 8px 18px;
   font-size: 18px;
@@ -38,7 +38,7 @@ button {
   border: none;
   cursor: pointer;
 }
-
+/*button changes darker blue if cursor hovers over button*/
 button:hover {
   background-color: #1565c0;
 }
@@ -54,7 +54,7 @@ button:hover {
 #current-weather {
   margin-bottom: 30px;
 }
-
+/*stylizes the forecast section for the future days*/
 .forecast-day {
   display: flex;
   flex-direction: column;
@@ -76,7 +76,7 @@ button:hover {
   list-style-type: none;
   margin-bottom: 30px;
 }
-
+/*containers for the previous results are placed in a blue container*/
 #search-history li {
   padding: 5px 10px;
   background-color: #1976d2;
@@ -86,7 +86,7 @@ button:hover {
 }
 
 #search-history li:hover {
-  background-color: #1565c0;
+  background-color: #183e69;
 }
 
 
