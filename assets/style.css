@@ -57,9 +57,15 @@ button:hover {
 
 .forecast-day {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 20px;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  width: 100%;
 }
 
 .forecast-day:last-child {
@@ -82,5 +88,7 @@ button:hover {
 #search-history li:hover {
   background-color: #1565c0;
 }
+
+
   
   

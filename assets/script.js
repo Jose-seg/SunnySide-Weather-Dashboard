@@ -12,6 +12,8 @@ searchForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const city = cityInput.value;
     fetchWeather(city);
+    //Clears search bar
+    cityInput.value = '';
 });
 
 function fetchWeather(city) {
@@ -40,19 +42,64 @@ function displayCurrentWeather(data) {
     const iconUrl = `http://openweathermap.org/img/wn/${weather[0].icon}.png`;
 
     currentWeatherDiv.innerHTML = `
-    <h3>${name} (${new Date()})`
+    <h3>${name} (${new Date().toLocaleDateString()}) <img src='${iconUrl}' alt='weather icon'></h3>
+    <p>Temperature: ${main.temp}°C</p>
+    <p>Humidity: ${main.humidity}%</p>
+    <p>Wind Speed: ${wind.speed} m/s</p>`;
+
+    addToSearchHistory(name);
 }
 
+// Display 5-day forecast
 function displayForecast(data) {
-    // Display 5-day forecast
+    const {list} = data;
+    const dailyData = [];
+
+    for(let i = 0; i < list.length; i += 8) {
+        dailyData.push(list[i]);
+    }
+    dailyData.shift(); //Takes away current day data
+
+    forecastDiv.innerHTML = dailyData
+    .map((dayData) => {
+        const {dt, main, wind, weather} = dayData;
+        const iconUrl = `http://openweathermap.org/img/wn/${weather[0].icon}.png`;
+        const date = new Date(dt * 1000).toLocaleDateString();
+
+        return `<div class="forecast-day">
+                    <h4>${date} <img src="${iconUrl}" alt="weather icon"></h4>
+                    <p>Temperature: ${main.temp}°C</p>
+                    <p>Humidity: ${main.humidity}%</p>
+                    <p>Wind Speed: ${wind.speed} m/s</p>`;
+    })
+    .join('');
 }
 
+// Add city to search history and create click event
 function addToSearchHistory(city) {
-    // Add city to search history and create click event
+    const searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
+    if (!searchHistory.includes(city)) {
+        searchHistory.unshift(city);
+    // Maximizes the number of items that are stored in search history to 5
+        searchHistory.splice(5);
+        localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+    }
+    loadSearchHistory();
 }
 
+// Load search history from local storage
 function loadSearchHistory() {
-    // Load search history from local storage
+    const searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
+    searchHistoryList.innerHTML= '';
+
+    searchHistory.forEach((city) => {
+        const li = document.createElement('li');
+        li.textContent = city;
+        li.addEventListener('click', () => {
+            fetchWeather(city);
+        });
+        searchHistoryList.appendChild(li);
+    })
 }
 
 loadSearchHistory();
